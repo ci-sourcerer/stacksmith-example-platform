@@ -1,0 +1,21 @@
+description: Platform-owned private bucket component.
+provider_mappings:
+  aws:
+    source:
+      source: registry
+      data:
+        address: hashicorp/aws
+        version: ">= 6.39, < 7.0"
+    instances:
+      default:
+        config:
+          data:
+            region: us-east-1
+module_mappings:
+  private_bucket:
+    source:
+      source: local
+      data:
+        path: modules/bucket
+    auto_inject_inputs: true
+    auto_expose_outputs: true
