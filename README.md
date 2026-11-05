@@ -5,3 +5,7 @@ This repository owns a `private_bucket` component and its AWS implementation. Th
 Use this with [the application example](https://github.com/ci-sourcerer/stacksmith-example-app). The application pins this configuration to a commit. Review a configuration change here, then deliberately update that pin in the application repository.
 
 The module creates an empty S3 bucket in `us-east-1`. It does not force-delete objects. Empty the bucket before destroying it. Remote state belongs in a separate bootstrap bucket and must outlive the application resources.
+
+## Validate without AWS
+
+From `modules/bucket`, run `tofu init -backend=false`, `tofu validate`, and `tofu test`. The test uses a mock AWS provider, verifies public-access blocking, and checks that destroy cannot silently delete objects. No AWS credentials or resources are used.
